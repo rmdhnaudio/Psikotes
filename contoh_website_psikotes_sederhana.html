@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Psikotes Online</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2563eb;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      background: #ecfeff;
+      border: 1px solid #67e8f9;
+      border-radius: 8px;
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Psikotes Online</h1>
+    <p>Contoh Website Psikotes Sederhana</p>
+  </header>
+
+  <div class="container">
+    <h2>Tes Kepribadian Singkat</h2>
+    <form id="testForm">
+      <div class="question">
+        <p>1. Saya merasa nyaman bekerja dalam tim</p>
+        <label><input type="radio" name="q1" value="4"> Sangat Setuju</label>
+        <label><input type="radio" name="q1" value="3"> Setuju</label>
+        <label><input type="radio" name="q1" value="2"> Tidak Setuju</label>
+        <label><input type="radio" name="q1" value="1"> Sangat Tidak Setuju</label>
+      </div>
+
+      <div class="question">
+        <p>2. Saya mampu bekerja di bawah tekanan</p>
+        <label><input type="radio" name="q2" value="4"> Sangat Setuju</label>
+        <label><input type="radio" name="q2" value="3"> Setuju</label>
+        <label><input type="radio" name="q2" value="2"> Tidak Setuju</label>
+        <label><input type="radio" name="q2" value="1"> Sangat Tidak Setuju</label>
+      </div>
+
+      <div class="question">
+        <p>3. Saya terbiasa mengatur waktu dengan baik</p>
+        <label><input type="radio" name="q3" value="4"> Sangat Setuju</label>
+        <label><input type="radio" name="q3" value="3"> Setuju</label>
+        <label><input type="radio" name="q3" value="2"> Tidak Setuju</label>
+        <label><input type="radio" name="q3" value="1"> Sangat Tidak Setuju</label>
+      </div>
+
+      <button type="button" onclick="hitungHasil()">Lihat Hasil</button>
+    </form>
+
+    <div class="result" id="resultBox"></div>
+  </div>
+
+  <footer>
+    &copy; 2026 Contoh Psikotes Online
+  </footer>
+
+  <script>
+    function hitungHasil() {
+      const form = document.getElementById('testForm');
+      let total = 0;
+
+      for (let i = 1; i <= 3; i++) {
+        const jawab = form.querySelector('input[name="q' + i + '"]:checked');
+        if (!jawab) {
+          alert('Silakan jawab semua pertanyaan terlebih dahulu.');
+          return;
+        }
+        total += parseInt(jawab.value);
+      }
+
+      let hasil = '';
+      if (total >= 10) {
+        hasil = 'Kepribadian Anda cenderung sangat positif, kooperatif, dan siap menghadapi tantangan.';
+      } else if (total >= 7) {
+        hasil = 'Kepribadian Anda cukup baik, namun masih dapat ditingkatkan dalam beberapa aspek.';
+      } else {
+        hasil = 'Anda perlu meningkatkan kemampuan kerja sama dan manajemen diri.';
+      }
+
+      const resultBox = document.getElementById('resultBox');
+      resultBox.style.display = 'block';
+      resultBox.innerHTML = '<strong>Skor Anda: </strong>' + total + '<br><br>' + hasil;
+    }
+  </script>
+
+</body>
+</html>
